@@ -1,43 +1,34 @@
 import DashboardLayout from "@/components/DashboardLayout";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Search, Filter, Mail, Phone, X } from "lucide-react";
+import { Search, Filter, Mail, Phone, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { useStudents } from "@/hooks/useStudents";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
-const mockStudents = [
-  { id: 1, name: "Aman", rank: 1, year: 2026, skills: ["Leadership", "Management", "Strategy"], status: "active", bio: "Passionate leader with a vision for community building and academic excellence.", email: "aman@hikma.edu", phone: "+234 801 000 0001" },
-  { id: 2, name: "Nihal", rank: 2, year: 2026, skills: ["Research", "Data Analysis", "Statistics"], status: "active", bio: "Research enthusiast who thrives on turning raw data into meaningful insights.", email: "nihal@hikma.edu", phone: "+234 801 000 0002" },
-  { id: 3, name: "Rayyan", rank: 3, year: 2026, skills: ["Engineering", "Robotics", "CAD"], status: "active", bio: "Aspiring engineer with hands-on experience in robotics and mechanical design.", email: "rayyan@hikma.edu", phone: "+234 801 000 0003" },
-  { id: 4, name: "Yaseen", rank: 4, year: 2026, skills: ["Public Speaking", "Writing", "Debate"], status: "active", bio: "Eloquent communicator and debater who inspires through words and action.", email: "yaseen@hikma.edu", phone: "+234 801 000 0004" },
-  { id: 5, name: "Nahash", rank: 5, year: 2026, skills: ["Design", "Figma", "Illustration"], status: "active", bio: "Creative designer with an eye for detail and a passion for visual storytelling.", email: "nahash@hikma.edu", phone: "+234 801 000 0005" },
-  { id: 6, name: "Nadih", rank: 6, year: 2026, skills: ["Marketing", "Branding", "Content Creation"], status: "active", bio: "Marketing strategist who builds brands and engages audiences effectively.", email: "nadih@hikma.edu", phone: "+234 801 000 0006" },
-  { id: 7, name: "Shadi", rank: 7, year: 2026, skills: ["Finance", "Budgeting", "Excel"], status: "active", bio: "Finance-savvy student managing union funds with precision and transparency.", email: "shadi@hikma.edu", phone: "+234 801 000 0007" },
-  { id: 8, name: "Anas", rank: 8, year: 2026, skills: ["Medicine", "First Aid", "Biology"], status: "active", bio: "Dedicated medical student committed to health awareness and community care.", email: "anas@hikma.edu", phone: "+234 801 000 0008" },
-  { id: 9, name: "Ameen", rank: 9, year: 2026, skills: ["Data Science", "Machine Learning", "Python"], status: "active", bio: "Data science enthusiast exploring the intersection of AI and real-world applications.", email: "ameen@hikma.edu", phone: "+234 801 000 0009" },
-  { id: 10, name: "Khaleel", rank: 10, year: 2026, skills: ["Python", "Django", "Backend Dev"], status: "active", bio: "Backend developer building robust systems and scalable web applications.", email: "khaleel@hikma.edu", phone: "+234 801 000 0010" },
-  { id: 11, name: "Shehin", rank: 11, year: 2026, skills: ["UI/UX", "Prototyping", "User Research"], status: "active", bio: "User experience designer focused on creating intuitive and delightful interfaces.", email: "shehin@hikma.edu", phone: "+234 801 000 0011" },
-  { id: 12, name: "Anzil", rank: 12, year: 2026, skills: ["SEO", "Digital Marketing", "Analytics"], status: "active", bio: "Digital marketing expert driving online visibility and engagement strategies.", email: "anzil@hikma.edu", phone: "+234 801 000 0012" },
-  { id: 13, name: "Fawaz", rank: 13, year: 2026, skills: ["Debate", "Critical Thinking", "Philosophy"], status: "active", bio: "Sharp thinker and debater who approaches problems with logic and clarity.", email: "fawaz@hikma.edu", phone: "+234 801 000 0013" },
-  { id: 14, name: "Midlaj", rank: 14, year: 2026, skills: ["Biology", "Ecology", "Lab Research"], status: "active", bio: "Biology student exploring ecosystems and conducting impactful lab research.", email: "midlaj@hikma.edu", phone: "+234 801 000 0014" },
-  { id: 15, name: "Ziyad", rank: 15, year: 2026, skills: ["Accounting", "Taxation", "Auditing"], status: "active", bio: "Detail-oriented accounting student with expertise in financial reporting.", email: "ziyad@hikma.edu", phone: "+234 801 000 0015" },
-  { id: 16, name: "Ashkar", rank: 16, year: 2026, skills: ["Law", "Constitutional Studies", "Ethics"], status: "active", bio: "Aspiring lawyer with a strong sense of justice and ethical reasoning.", email: "ashkar@hikma.edu", phone: "+234 801 000 0016" },
-  { id: 17, name: "Munfis", rank: 17, year: 2026, skills: ["AI", "Deep Learning", "NLP"], status: "active", bio: "AI researcher pushing boundaries in natural language processing and deep learning.", email: "munfis@hikma.edu", phone: "+234 801 000 0017" },
-  { id: 18, name: "Hisham", rank: 18, year: 2026, skills: ["Networking", "System Admin", "Linux"], status: "active", bio: "Networking specialist skilled in system administration and infrastructure management.", email: "hisham@hikma.edu", phone: "+234 801 000 0018" },
-  { id: 19, name: "Razi", rank: 19, year: 2026, skills: ["Cybersecurity", "Ethical Hacking", "Forensics"], status: "active", bio: "Cybersecurity enthusiast focused on protecting systems and ethical penetration testing.", email: "razi@hikma.edu", phone: "+234 801 000 0019" },
-  { id: 20, name: "Bishr", rank: 20, year: 2026, skills: ["Cloud Computing", "AWS", "DevOps"], status: "active", bio: "Cloud computing specialist building scalable infrastructure on modern platforms.", email: "bishr@hikma.edu", phone: "+234 801 000 0020" },
-];
-
-type Student = typeof mockStudents[number];
+type Student = {
+  id: number;
+  name: string;
+  rank: number;
+  year: number;
+  skills: string[];
+  status: string;
+  bio: string;
+  email: string;
+  phone: string;
+};
 
 const Students = () => {
   const [search, setSearch] = useState("");
   const [yearFilter, setYearFilter] = useState("all");
   const [selected, setSelected] = useState<Student | null>(null);
+  
+  const { data: students, isLoading, error } = useStudents();
 
-  const filtered = mockStudents.filter((s) => {
+  const filtered = (students || []).filter((s) => {
     const matchSearch = s.name.toLowerCase().includes(search.toLowerCase()) ||
       s.skills.some((sk) => sk.toLowerCase().includes(search.toLowerCase()));
     const matchYear = yearFilter === "all" || s.year.toString() === yearFilter;
@@ -51,7 +42,22 @@ const Students = () => {
         <p className="text-muted-foreground mt-1">Browse and search all union members. Click a card to view full profile.</p>
       </div>
 
+      {error && (
+        <Alert variant="destructive" className="mb-6">
+          <AlertDescription>
+            Failed to load students. Please check your Supabase configuration.
+          </AlertDescription>
+        </Alert>
+      )}
+
+      {isLoading && (
+        <div className="flex justify-center items-center py-12">
+          <Loader2 className="h-8 w-8 animate-spin text-gold" />
+        </div>
+      )}
+
       {/* Filters */}
+      {!isLoading && !error && (
       <div className="flex flex-col sm:flex-row gap-3 mb-6">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -75,8 +81,10 @@ const Students = () => {
           </SelectContent>
         </Select>
       </div>
+      )}
 
       {/* Student Grid */}
+      {!isLoading && !error && (
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {filtered.map((student) => (
           <div
@@ -109,8 +117,9 @@ const Students = () => {
           </div>
         ))}
       </div>
+      )}
 
-      {filtered.length === 0 && (
+      {filtered.length === 0 && !isLoading && !error && (
         <div className="text-center py-12 text-muted-foreground">
           <p>No students found matching your criteria.</p>
         </div>
