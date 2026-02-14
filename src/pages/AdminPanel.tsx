@@ -12,11 +12,26 @@ const stats = [
 ];
 
 const recentStudents = [
-  { name: "Ahmed Ibrahim", email: "ahmed@example.com", role: "Committee Admin", status: "active" },
-  { name: "Fatima Abubakar", email: "fatima@example.com", role: "Student", status: "active" },
-  { name: "Yusuf Mohammed", email: "yusuf@example.com", role: "Student", status: "pending" },
-  { name: "Aisha Suleiman", email: "aisha@example.com", role: "Student", status: "active" },
-  { name: "Musa Abdullahi", email: "musa@example.com", role: "Student", status: "blocked" },
+  { name: "Aman", email: "aman@hikma.edu", role: "Committee Admin", status: "active" },
+  { name: "Nihal", email: "nihal@hikma.edu", role: "Student", status: "active" },
+  { name: "Rayyan", email: "rayyan@hikma.edu", role: "Student", status: "active" },
+  { name: "Yaseen", email: "yaseen@hikma.edu", role: "Student", status: "active" },
+  { name: "Nahash", email: "nahash@hikma.edu", role: "Student", status: "active" },
+  { name: "Nadih", email: "nadih@hikma.edu", role: "Student", status: "active" },
+  { name: "Shadi", email: "shadi@hikma.edu", role: "Student", status: "active" },
+  { name: "Anas", email: "anas@hikma.edu", role: "Student", status: "active" },
+  { name: "Ameen", email: "ameen@hikma.edu", role: "Student", status: "active" },
+  { name: "Khaleel", email: "khaleel@hikma.edu", role: "Student", status: "active" },
+  { name: "Shehin", email: "shehin@hikma.edu", role: "Student", status: "active" },
+  { name: "Anzil", email: "anzil@hikma.edu", role: "Student", status: "active" },
+  { name: "Fawaz", email: "fawaz@hikma.edu", role: "Student", status: "active" },
+  { name: "Midlaj", email: "midlaj@hikma.edu", role: "Student", status: "active" },
+  { name: "Ziyad", email: "ziyad@hikma.edu", role: "Student", status: "active" },
+  { name: "Ashkar", email: "ashkar@hikma.edu", role: "Student", status: "active" },
+  { name: "Munfis", email: "munfis@hikma.edu", role: "Student", status: "active" },
+  { name: "Hisham", email: "hisham@hikma.edu", role: "Student", status: "active" },
+  { name: "Razi", email: "razi@hikma.edu", role: "Student", status: "active" },
+  { name: "Bishr", email: "bishr@hikma.edu", role: "Student", status: "active" },
 ];
 
 const AdminPanel = () => {
