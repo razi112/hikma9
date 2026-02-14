@@ -7,14 +7,26 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 
 const mockStudents = [
-  { id: 1, name: "Ahmed Ibrahim", rank: 1, year: 2026, skills: ["Leadership", "Public Speaking"], status: "active" },
-  { id: 2, name: "Fatima Abubakar", rank: 2, year: 2026, skills: ["Research", "Data Science"], status: "active" },
-  { id: 3, name: "Yusuf Mohammed", rank: 3, year: 2025, skills: ["Engineering", "Python"], status: "active" },
-  { id: 4, name: "Aisha Suleiman", rank: 5, year: 2026, skills: ["Design", "UI/UX"], status: "active" },
-  { id: 5, name: "Musa Abdullahi", rank: 4, year: 2025, skills: ["Marketing", "SEO"], status: "pending" },
-  { id: 6, name: "Khadija Umar", rank: 6, year: 2024, skills: ["Finance", "Accounting"], status: "active" },
-  { id: 7, name: "Ibrahim Hassan", rank: 7, year: 2026, skills: ["Medicine", "Biology"], status: "active" },
-  { id: 8, name: "Zainab Bello", rank: 8, year: 2025, skills: ["Law", "Debate"], status: "blocked" },
+  { id: 1, name: "Aman", rank: 1, year: 2026, skills: ["Leadership"], status: "active" },
+  { id: 2, name: "Nihal", rank: 2, year: 2026, skills: ["Research"], status: "active" },
+  { id: 3, name: "Rayyan", rank: 3, year: 2026, skills: ["Engineering"], status: "active" },
+  { id: 4, name: "Yaseen", rank: 4, year: 2026, skills: ["Public Speaking"], status: "active" },
+  { id: 5, name: "Nahash", rank: 5, year: 2026, skills: ["Design"], status: "active" },
+  { id: 6, name: "Nadih", rank: 6, year: 2026, skills: ["Marketing"], status: "active" },
+  { id: 7, name: "Shadi", rank: 7, year: 2026, skills: ["Finance"], status: "active" },
+  { id: 8, name: "Anas", rank: 8, year: 2026, skills: ["Medicine"], status: "active" },
+  { id: 9, name: "Ameen", rank: 9, year: 2026, skills: ["Data Science"], status: "active" },
+  { id: 10, name: "Khaleel", rank: 10, year: 2026, skills: ["Python"], status: "active" },
+  { id: 11, name: "Shehin", rank: 11, year: 2026, skills: ["UI/UX"], status: "active" },
+  { id: 12, name: "Anzil", rank: 12, year: 2026, skills: ["SEO"], status: "active" },
+  { id: 13, name: "Fawaz", rank: 13, year: 2026, skills: ["Debate"], status: "active" },
+  { id: 14, name: "Midlaj", rank: 14, year: 2026, skills: ["Biology"], status: "active" },
+  { id: 15, name: "Ziyad", rank: 15, year: 2026, skills: ["Accounting"], status: "active" },
+  { id: 16, name: "Ashkar", rank: 16, year: 2026, skills: ["Law"], status: "active" },
+  { id: 17, name: "Munfis", rank: 17, year: 2026, skills: ["AI"], status: "active" },
+  { id: 18, name: "Hisham", rank: 18, year: 2026, skills: ["Networking"], status: "active" },
+  { id: 19, name: "Razi", rank: 19, year: 2026, skills: ["Cybersecurity"], status: "active" },
+  { id: 20, name: "Bishr", rank: 20, year: 2026, skills: ["Cloud Computing"], status: "active" },
 ];
 
 const Students = () => {
